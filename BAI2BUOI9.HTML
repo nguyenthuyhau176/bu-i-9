@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Slideshow</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-color: #f0f0f0;
+            }
+
+            .slideshow-container {
+                position: relative;
+                max-width: 800px;
+            }
+
+            .slides {
+                display: none;
+                width: 800px;
+                /* Tăng độ rộng của ảnh */
+                height: auto;
+                /* Đảm bảo ảnh được tự động điều chỉnh chiều cao để giữ tỷ lệ */
+                border-radius: 5px;
+            }
+
+            .active {
+                display: block;
+            }
+
+            .prev, .next {
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: auto;
+                padding: 16px;
+                color: white;
+                font-weight: bold;
+                font-size: 18px;
+                background-color: rgba(0, 0, 0, 0.5);
+                border-radius: 3px;
+                user-select: none;
+            }
+
+            .prev {
+                left: 0;
+            }
+
+            .next {
+                right: 0;
+            }
+
+            .prev:hover, .next:hover {
+                background-color: rgba(0, 0, 0, 0.8);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="slideshow-container">
+            <!-- Ảnh đầu tiên -->
+            <img src="https://danviet.mediacdn.vn/upload/4-2015/images/2015-10-31/1446280996-7.jpg" class="slides active">
+            <!-- Ảnh thứ hai -->
+            <img src="https://vcdn1-dulich.vnecdn.net/2021/07/16/1-1626437591.jpg?w=460&h=0&q=100&dpr=2&fit=crop&s=i2M2IgCcw574LT-bXFY92g" class="slides">
+            <!-- Ảnh thứ ba -->
+            <img src="https://vcdn1-dulich.vnecdn.net/2021/07/16/3-1-1626444927.jpg?w=460&h=0&q=100&dpr=2&fit=crop&s=KU8IkmrM5HbtYIyyS5k1qQ" class="slides">
+            <img src="https://baogiaothong.mediacdn.vn/upload/2-2022/images/2022-05-25/1-1653445668-308-width740height476.jpg" class="slides">
+            <!-- Nút di chuyển -->
+            <span class="prev" onclick="moveSlide(-1)">&#10094;</span>
+            <span class="next" onclick="moveSlide(1)">&#10095;</span>
+        </div>
+        <script>
+            let slideIndex = 0;
+
+            // Hàm thay đổi slide
+            function moveSlide(step) {
+                const slides = document.getElementsByClassName("slides");
+                slides[slideIndex].classList.remove("active");
+
+                slideIndex = (slideIndex + step + slides.length) % slides.length;
+
+                slides[slideIndex].classList.add("active");
+            }
+        </script>
+    </body>
+</html>

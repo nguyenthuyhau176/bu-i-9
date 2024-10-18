@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Định nghĩa một lớp CSS cho màu xanh */
+        .text-green {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <p id="myText">Đổi màu tôi đi</p>
+    <button type="button" onclick="changeColor()">Xanh</button>
+
+    <script>
+        // Hàm thay đổi màu sắc của đoạn văn
+        function changeColor() {
+            var textElement = document.getElementById("myText");
+            textElement.classList.toggle("text-green"); // Thay đổi lớp CSS
+        }
+    </script>
+</body>
+</html>

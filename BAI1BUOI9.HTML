@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Đăng Ký</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        form {
+            border: 1px solid #000;
+            padding: 20px;
+            width: 300px;
+            margin: 50px auto;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+        input[type="submit"], input[type="reset"] {
+            margin-top: 10px;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <form id="registrationForm">
+        <h3>FORM ĐĂNG KÝ</h3>
+        <label for="ho">Họ:</label>
+        <input type="text" id="ho" name="ho">
+        <span id="hoError" class="error"></span>
+
+        <label for="ten">Tên:</label>
+        <input type="text" id="ten" name="ten">
+        <span id="tenError" class="error"></span>
+
+        <label for="ngaysinh">Ngày sinh:</label>
+        <select id="ngay" name="ngay">
+            <option value="1">1</option>
+            <!-- Các ngày khác -->
+        </select>
+        <select id="thang" name="thang">
+            <option value="1">Tháng 1</option>
+            <!-- Các tháng khác -->
+        </select>
+        <select id="nam" name="nam">
+            <option value="1980">1980</option>
+            <!-- Các năm khác -->
+        </select>
+
+        <label>Giới tính:</label>
+        <input type="radio" name="gioitinh" value="Nam"> Nam
+        <input type="radio" name="gioitinh" value="Nữ"> Nữ
+
+        <label for="sdt">Số điện thoại:</label>
+        <input type="text" id="sdt" name="sdt">
+        <span id="sdtError" class="error"></span>
+
+        <label>Sở thích:</label>
+        <input type="checkbox" name="sothich" value="Đọc sách"> Đọc sách
+        <input type="checkbox" name="sothich" value="Xem phim"> Xem phim
+        <input type="checkbox" name="sothich" value="Nghe nhạc"> Nghe nhạc
+        <input type="checkbox" name="sothich" value="Đá bóng"> Đá bóng
+
+        <label for="khac">Khác:</label>
+        <textarea id="khac" name="khac"></textarea>
+
+        <input type="submit" value="Submit">
+        <input type="reset" value="Reset">
+    </form>
+
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            // Lấy giá trị các trường
+            var ho = document.getElementById('ho').value.trim();
+            var ten = document.getElementById('ten').value.trim();
+            var sdt = document.getElementById('sdt').value.trim();
+
+            var isValid = true;
+
+            // Kiểm tra trường Họ
+            if (ho === '') {
+                document.getElementById('hoError').innerText = 'Vui lòng nhập họ';
+                isValid = false;
+            } else {
+                document.getElementById('hoError').innerText = '';
+            }
+
+            // Kiểm tra trường Tên
+            if (ten === '') {
+                document.getElementById('tenError').innerText = 'Vui lòng nhập tên';
+                isValid = false;
+            } else {
+                document.getElementById('tenError').innerText = '';
+            }
+
+            // Kiểm tra trường Số điện thoại (phải là số và độ dài là 10 ký tự)
+            var phoneRegex = /^[0-9]{10}$/;
+            if (!phoneRegex.test(sdt)) {
+                document.getElementById('sdtError').innerText = 'Số điện thoại phải là số và gồm 10 chữ số';
+                isValid = false;
+            } else {
+                document.getElementById('sdtError').innerText = '';
+            }
+
+            // Ngăn không cho gửi form nếu có lỗi
+            if (!isValid) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
